@@ -14,6 +14,12 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
+    addInvoice(state, newInvoice) {
+      state.invoices.push(newInvoice);
+    },
+    deleteInvoice(state, deleteInvoice) {
+      state.invoices = state.invoices.filter((invoice) => invoice.id !== deleteInvoice);
+    },
   },
   actions: {
   },

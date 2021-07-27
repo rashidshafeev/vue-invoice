@@ -4,17 +4,27 @@
         <div class="card-action-icon"><img src="@/assets/pencil.svg" alt=""></div>
         <div class="card-action-caption">редактировать</div>
       </div>
-      <div class="card-actions-line">
+      <div
+        class="card-actions-line"
+        v-on:click="callDeleteInvoice">
         <div class="card-action-icon"><img src="@/assets/close.svg" alt=""></div>
-        <div class="card-action-caption">удалить {{ invoice }}</div>
+        <div class="card-action-caption">удалить</div>
       </div>
     </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
+  methods: {
+    ...mapMutations(['deleteInvoice']),
+    callDeleteInvoice() {
+      this.deleteInvoice(this.invoice.id);
+    },
+  },
   props: {
-    invoice: String,
+    invoice: Object,
   },
 };
 </script>

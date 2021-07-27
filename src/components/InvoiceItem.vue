@@ -10,7 +10,7 @@
         </button>
         <CardActions
         v-show="showActions"
-        v-bind:invoice="invoice.id"
+        v-bind:invoice="invoice"
         />
       </div>
     </div>

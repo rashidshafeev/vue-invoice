@@ -27,7 +27,7 @@ export default {
     display: flex;
     flex-flow: row wrap;
 
-    :nth-child(3) {
+    :nth-child(3n) {
       margin-right: 0;
     }
   }

@@ -1,11 +1,18 @@
 <template>
   <div id="app">
+    <AddInvoiceModal
+        v-show="showAddInvoiceModal"
+        @close="showAddInvoiceModal = !showAddInvoiceModal"
+    />
     <section class="header">
       <div class="container"><h1>Тестовое задание</h1></div>
     </section>
     <section class="main">
       <div class="left-column">
-        <button class="add-button"></button>
+        <button
+          class="add-button"
+          @click="showAddInvoiceModal = !showAddInvoiceModal">
+        Добавить</button>
         <div class="filters"></div>
       </div>
       <div class="right-column">
@@ -31,9 +38,15 @@
 </template>
 
 <script>
+import AddInvoiceModal from '@/components/AddInvoiceModal.vue';
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      showAddInvoiceModal: false,
+    };
+  },
   methods: {
     switchToCardsView() {
       this.$router.push({ path: '/cards' });
@@ -43,11 +56,15 @@ export default {
     },
   },
   components: {
+    AddInvoiceModal,
   },
 };
 </script>
 
 <style lang="scss" scoped>
+  .app {
+    height: 100vh;;
+  }
 
   .container {
     width: 1220px;
@@ -76,6 +93,7 @@ export default {
   }
 
   .main {
+    height: calc(100vh - 261px);
     display: flex;
     justify-content: center;
     align-items: start;
