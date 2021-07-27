@@ -13,20 +13,33 @@
           type="text"
           name="invoice-number"
           class="invoice-number-input"
+          placeholder="Введите значение"
           id=""
           v-model="invoiceNumber">
-        <label for="order-type">Тип заказа</label>
-        <select
-          name="order-type"
-          class="order-type-input"
-          id=""
-          form="new-invoice"
-          v-model="orderType">
-          <option disabled selected>RUED</option>
-          <option value="foo">foo</option>
-          <option value="bar">bar</option>
-        </select>
-
+        <div class="order-type-label">Тип заказа</div>
+        <div
+          class="order-type-select"
+          id="order-type-select"
+          @click="showOrderTypes = !showOrderTypes">
+          <div
+            class="order-type-select-text"
+            v-bind:class="{active: orderType}"
+            id="order-type-select-text">RUED</div>
+          <img
+          src="@/assets/arrow.svg"
+          class="select-arrow"
+          v-bind:class="{opened: showOrderTypes}" alt="">
+        </div>
+          <div
+            class="order-types-container"
+            v-bind:class="{opened: showOrderTypes}">
+            <div class="order-type-options"
+            @click="setOrderType('FOO')">
+              FOO</div>
+            <div class="order-type-options"
+            @click="setOrderType('BAR')">
+              BAR</div>
+          </div>
       </form>
     </div>
     <div
@@ -45,12 +58,23 @@ export default ({
     return {
       invoiceNumber: '',
       orderType: '',
+      showOrderTypes: false,
     };
   },
   methods: {
     ...mapMutations(['addInvoice']),
     closeModal() {
-      this.$emit('close');
+      this.$emit('close-add-modal');
+    },
+    setOrderType(orderType) {
+      this.orderType = orderType;
+      this.showOrderTypes = !this.showOrderTypes;
+
+      if (orderType === 'FOO') {
+        document.getElementById('order-type-select-text').innerText = 'FOO';
+      } else if (orderType === 'BAR') {
+        document.getElementById('order-type-select-text').innerText = 'BAR';
+      }
     },
     callAddInvoice() {
       this.addInvoice({
@@ -69,7 +93,7 @@ export default ({
 
   .modal-background {
     position: fixed;
-    z-index: 10;
+    z-index: 200;
 
     width: 100vw;
     height: 100vh;
@@ -81,7 +105,7 @@ export default ({
     position: absolute;
     left: calc((100vw - 400px) / 2);
     top: calc((100vh - 239px) / 2);
-    z-index: 50;
+    z-index: 250;
 
     width: 400px;
     height: 239px;
@@ -111,23 +135,76 @@ export default ({
 
     border: 1px solid #D9D9D9;
     border-radius: 2px;
-  }
 
-  .order-type-input {
-    width: 100%;
-    height: 30px;
-
-    padding: 5px 15px;
-
-    appearance: none;
-
-    background: url('../assets/arrow.svg') no-repeat right;
-
-    border: 1px solid #D9D9D9;
-    border-radius: 2px;
+    ::placeholder {
+      color: #A5A5A5;
+    }
   }
 
   label {
     padding: 15px 0;
+  }
+
+  .order-type-label {
+    padding: 15px 0;
+  }
+
+  .order-type-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 30px;
+
+    padding: 5px 10px;
+
+    font-weight: normal;
+    font-size: 16px;
+    color: #A5A5A5;
+
+    border: 1px solid #E0E5E6;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+
+  .active {
+    color: #000000;
+  }
+
+  .select-arrow {
+    transform: rotate(90deg);
+    transition-duration: 200ms;
+  }
+
+  .order-types-container {
+    display: none;
+
+    overflow: hidden;
+
+    width: 100%;
+
+    border-radius: 0 0 2px 2px;
+  }
+
+  .opened {
+    display: block;
+    transform: rotate(0deg);
+  }
+
+  .order-type-options {
+    width: 100%;
+    height: 30px;
+
+    padding: 5px 10px;
+
+    font-weight: normal;
+    font-size: 12px;
+
+    border: 1px solid #E0E5E6;
+    border-top: none;
+    box-sizing: border-box;
+
+    background: #FFFFFF;
   }
 </style>

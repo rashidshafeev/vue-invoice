@@ -6,7 +6,7 @@
       </div>
       <div
         class="card-actions-line"
-        v-on:click="callDeleteInvoice">
+        @click="callDeleteInvoice">
         <div class="card-action-icon"><img src="@/assets/close.svg" alt=""></div>
         <div class="card-action-caption">удалить</div>
       </div>
