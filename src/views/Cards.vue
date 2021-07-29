@@ -1,6 +1,5 @@
 <template>
   <div class="invoice-list">
-    <div class="test-style"></div>
       <InvoiceItemCards
         v-for="(invoice, index) of sortedFilteredInvoices"
         :invoice="invoice"
