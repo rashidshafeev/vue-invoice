@@ -1,10 +1,19 @@
 <template>
   <div class="table-actions">
-    <div><img src="@/assets/pen.svg" alt=""></div>
-    <div @click="callDeleteInvoice"><img src="@/assets/bin.svg" alt=""></div>
-    <div
+    <div class="pen-icon-bg">
+      <button class="pen-icon"><img src="@/assets/pen.svg" alt=""></button>
+    </div>
+    <div class="bin-icon-bg">
+    <button
+      class="bin-icon"
+      @click="callDeleteInvoice">
+      <img  src="@/assets/bin.svg" alt="">
+    </button>
+    </div>
+    <button
       class="kebab-icon"
-      @click="closeActions"><img src="@/assets/grey-kebab.svg" alt=""></div>
+      @click="closeActions"><img src="@/assets/grey-kebab.svg" alt="">
+    </button>
   </div>
 </template>
 
@@ -45,7 +54,54 @@ export default {
     border-radius: 3px;
   }
 
+  .pen-icon-bg, .bin-icon-bg {
+    background: transparent;
+
+    border-radius: 15px;
+
+    &:hover {
+      background: #E5E9EC;
+    }
+  }
+
+  .pen-icon, .bin-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    opacity: 0.5;
+
+    border: none;
+    border-radius: 15px;
+
+    background: transparent;
+
+    &:active {
+      opacity: 1;
+    }
+
+  }
+
   .kebab-icon {
-    padding: 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    background: transparent;
+
+    border: none;
+    cursor: pointer;
+
+    opacity: 0.5;
+
+    &:active {
+      opacity: 1;
+    }
   }
 </style>
