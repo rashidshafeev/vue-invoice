@@ -136,7 +136,7 @@ export default {
     justify-content: center;
     align-items: center;
 
-    height: 261px;
+    height: 100px;
 
     color: #FFFFFF;
 
@@ -154,7 +154,7 @@ export default {
   }
 
   .main {
-    min-height: calc(100vh - 261px);
+    min-height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: start;
