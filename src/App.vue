@@ -5,7 +5,7 @@
         @close-add-modal="showAddInvoiceModal = !showAddInvoiceModal"
     />
     <section class="header">
-      <div class="container"><h1>Тестовое задание</h1></div>
+      <div class="container"><h1>Vue invoice</h1></div>
     </section>
     <section class="main">
       <div class="left-column">
